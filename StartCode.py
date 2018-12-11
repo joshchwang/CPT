@@ -11,4 +11,5 @@ def keyPressed():
         x += 4 
 def draw():
     background(255)
-    rect(x,100,100,100)
+    rect(x,300,100,100)
+    rect(-10,400,1500,200)
