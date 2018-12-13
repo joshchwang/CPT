@@ -5,7 +5,8 @@ playerw = 100
 playerh = 100
 isJump = False
 jumpCounter = 10
-
+Left = False
+Right = False
 def setup():
     size(1200, 600)
 
@@ -13,16 +14,24 @@ def setup():
 def keyPressed():
     global playerx, playery, isJump, jumpCounter
     if key == 'a' and playerx > vel:
+        Left = True
         playerx -= vel
     if key == 'd' and playerx < 1200 - playerw - vel:
+        Right = True
         playerx += vel
 
     if not(isJump):
         if key == 'w':
             isJump = True            
+            
+def keyReleased():
+    if key == 'a' and playerx > vel:
+        Left = False
+    if key == 'd' and playerx < 1200 - playerw - vel:
+        Right = True
         
-    
 def draw():
+    
     global playerx, playery, isJump, jumpCounter
     if isJump == True and jumpCounter >= -10:
         neg = 1
