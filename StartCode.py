@@ -7,42 +7,37 @@ isJump = False
 jumpCounter = 10
 Left = False
 Right = False
+
+
 def setup():
-    size(1200, 600)
-
-
-def keyPressed():
-    global playerx, playery, isJump, jumpCounter
-    if key == 'a' and playerx > vel:
-        Left = True
-        playerx -= vel
-    if key == 'd' and playerx < 1200 - playerw - vel:
-        Right = True
-        playerx += vel
-
-    if not(isJump):
-        if key == 'w':
-            isJump = True            
+    size(1200, 600)          
             
-def keyReleased():
-    if key == 'a' and playerx > vel:
-        Left = False
-    if key == 'd' and playerx < 1200 - playerw - vel:
-        Right = True
-        
+
+             
 def draw():
     
-    global playerx, playery, isJump, jumpCounter
-    if isJump == True and jumpCounter >= -10:
-        neg = 1
-        if jumpCounter < 0 :
-            neg = -1
-        playery -= jumpCounter **2 *.5 * neg
-        jumpCounter-=1
-    else:
-        isJump = False
-        jumpCounter = 10
-        
+    if mousePressed:
+        global isJump, jumpCounter
+        if isJump == True and jumpCounter >= -10:
+            neg = 1
+            if jumpCounter < 0 :
+                neg = -1
+            playery -= jumpCounter **2 *.5 * neg
+            jumpCounter-=1
+        else:
+            isJump = False
+            jumpCounter = 10
+            
+        global playerx, playery, Right, Left
+        if mouseX >  600:
+            Right = True   
+        if mouseX < 600:
+            Left = True
+        if Left == True:
+            playerx -= vel
+        if Right == True:
+            playerx += vel
+    print mouseX
     background(255)
-    rect(playerx, playery, playerw, playerh)
+    rect(mouseX, playery, playerw, playerh)
     rect(-10, 400, 1500, 200)
