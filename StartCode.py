@@ -4,14 +4,14 @@ vel = 20
 playerw = 100
 playerh = 100
 isJump = False
-jumpCount = 10
+jumpCounter = 10
 
 def setup():
     size(1200, 600)
 
 
 def keyPressed():
-    global playerx, playery, isJump, jumpCount
+    global playerx, playery, isJump, jumpCounter
     if key == 'a' and playerx > vel:
         playerx -= vel
     if key == 'd' and playerx < 1200 - playerw - vel:
@@ -23,16 +23,16 @@ def keyPressed():
         
     
 def draw():
-    global playerx, playery, isJump, jumpCount
-    if isJump == True and jumpCount >= -10:
+    global playerx, playery, isJump, jumpCounter
+    if isJump == True and jumpCounter >= -10:
         neg = 1
-        if jumpCount < 0 :
+        if jumpCounter < 0 :
             neg = -1
-        playery -= jumpCount **2 *.5 * neg
-        jumpCount-=1
+        playery -= jumpCounter **2 *.5 * neg
+        jumpCounter-=1
     else:
         isJump = False
-        jumpCount = 10
+        jumpCounter = 10
         
     background(255)
     rect(playerx, playery, playerw, playerh)
