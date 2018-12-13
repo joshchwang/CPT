@@ -10,6 +10,6 @@ In the words of Jake Peralta:
 
 
 The game's Creators: ** UwU **
-1. Felo
-2. Josh
-3. Cameron
+1. Josh C
+2. Cameron K
+3. Felo T
