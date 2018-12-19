@@ -17,7 +17,7 @@ def setup():
     size(1200, 600)
 
 def draw():
-    global playerx, playery, Right, Left, isJump, jumpCounter, blockx, coinlistx, coinlisty, mouseX, deathcoutner, death
+    global playerx, playery, Right, Left, isJump, jumpCounter, blockx, coinlistx, coinlisty, mouseX, deathcounter, death
     background(255)
 
     if not(mouseX + playerw / 2 > blockx and mouseX - playerw / 2 < blockx + 100 and
@@ -29,7 +29,7 @@ def draw():
     else:
         mouseX = blockx
         death = True
-        deathcouter += 1
+        deathcounter += 1
 
     if isJump == True and jumpCounter >= -10:
         neg = 1
@@ -56,3 +56,20 @@ def draw():
     rect(playerx - playerw / 2, playery, playerw, playerh)
     rect(-10, 400, 1500, 200)
     rect(blockx, 300, 100, 50)
+    
+    
+    #Death Code
+    if death == True:
+        playery -= 5
+        if playery <= 100:
+            playery += 20
+            if playery >= 600:
+                playery = 200
+    
+    
+    
+    
+    
+    
+    
+    
