@@ -33,12 +33,12 @@ def draw():
     if playerx >= 550 and playery >=299 : 
         playerx = 550
     elif playerx >= 700 and playery <= 200:
-        playery = 299
+        playery += 99
         playerx = 800
     elif playerx >= 550 and playerx <=700 and playery <=299:
-        playery = 200
+        playery -= 99
     elif playery <= 200 and playerx >= 550 and playerx >= 700  :
-        playery = 299
+        playery += 99
  
     rect(playerx-50, playery, playerw, playerh)
     rect(-10, 400, 1500, 200)
