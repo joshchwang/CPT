@@ -13,18 +13,10 @@ coinlistx = [1, 20, 30, 40, 500, 123, 3423, 11, 343]
 coinlisty = [20, 30, 40, 50, 60, 70, 80, 90, 100]
 deathcounter = 0
 death = False
+keys_pressed = [False for key_code in range(256)]
 
 def setup():
     size(1200, 600)
-    
-def keyPressed():
-    global keys_pressed
-    print(keyCode)
-    keys_pressed[keyCode] = True
-
-def keyReleased():
-    global keys_pressed
-    keys_pressed[keyCode] = False
 
 def draw():
     global playerx, playery, Right, Left, isJump, jumpCounter, blockx, coinlistx, coinlisty, mouseX, deathcounter, death, collisiony, keys_pressed
@@ -86,10 +78,17 @@ def draw():
     
     #Death Code
 
-if death == True:
-    time.freeze
+    if death == True:
+        time.freeze
     #ADD DEATH GIF U STUPID
     #FLOWER 
     #UPTOWN
     #CAT
     #KANGAROO
+    
+def keyPressed():
+    print(keyCode)
+    keys_pressed[keyCode] = True
+
+def keyReleased():
+    keys_pressed[keyCode] = False
