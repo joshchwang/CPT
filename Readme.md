@@ -9,7 +9,7 @@ In the words of Jake Peralta:
 > 'Doctor said my bleeding was internal, that where its supposed to be !'
 
 
-The game's Creators: ** UwU **
+The game's Creators: **UwU**
 1. Josh C
 2. Cameron K
 3. Felo T
