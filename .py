@@ -7,13 +7,14 @@ isJump = False
 jumpCounter = 10
 Left = False
 Right = False
-
+timer = 500000
+collisiony = 0
 
 def setup():
     size(1200, 600)          
              
 def draw():
-    global playerx, playery, Right, Left, isJump, jumpCounter, mouseX
+    global playerx, playery, Right, Left, isJump, jumpCounter, mouseX, block1, collisiony
     playerx = mouseX
     if mousePressed:
         isJump = True
@@ -30,15 +31,15 @@ def draw():
     background(255)
      #collision
     rect(600,300,100,100)
-    if playerx >= 550 and playery >=299 : 
-        playerx = 550
-    elif playerx >= 700 and playery <= 200:
-        playery = 299
-        playerx = 800
-    elif playerx >= 550 and playerx <=700 and playery <=299:
-        playery = 200
-    elif playery <= 200 and playerx >= 550 and playerx >= 700  :
-        playery = 299
- 
-    rect(playerx-50, playery, playerw, playerh)
-    rect(-10, 400, 1500, 200)
+   
+    if playerx >= 550 and playerx <= 750 and isJump == True:
+        collisiony = 100
+    elif playerx >= -10 and playerx <= 550:
+        collisiony = 0
+    elif playerx >=750 and playerx <= 1000000000:
+        collisiony = 0
+    rect(playerx-50, playery - collisiony, playerw, playerh)
+    rect(-10, 400, 1500, 200) 
+    
+
+    
