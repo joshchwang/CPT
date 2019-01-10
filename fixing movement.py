@@ -1,6 +1,4 @@
-
-import time
-playery = 300
+playery = 299
 vel = 20
 playerw = 100
 playerh = 100
@@ -14,81 +12,79 @@ coinlisty = [20, 30, 40, 50, 60, 70, 80, 90, 100]
 deathcounter = 0
 death = False
 keys_pressed = [False for key_code in range(256)]
+collisiony = 0
+playerx = 200
+
 
 def setup():
     size(1200, 600)
 
+
 def draw():
-    global playerx, playery, Right, Left, isJump, jumpCounter, blockx, coinlistx, coinlisty, mouseX, deathcounter, death, collisiony, keys_pressed
+    global playerx, playery, Right, Left, isJump
+    global jumpCounter, blockx, coinlistx, coinlisty
+    global deathcounter, death, collisiony, keys_pressed
     background(255)
 
     if keys_pressed[87]:  # w
         pass
     if keys_pressed[32]:  # space
         isJump = True
-    if keys_pressed[65]:#a
-        text('a', 50, 50)
-    if keys_pressed[83]:#s
+    if keys_pressed[65]:  # a
+        playerx -= vel
+    if keys_pressed[83]:  # s
         text('s', 100, 50)
-    if keys_pressed[68]:#d
-        text('d', 150, 50)
-
-    if not(mouseX + playerw / 2 > blockx and mouseX - playerw / 2 < blockx + 100 and
-            playery >= 300 and playery < 300 + 50):
+    if keys_pressed[68]:  # d
+        playerx += vel
+    if not(playerx + playerw / 2 > blockx and
+            playerx - playerw / 2 < blockx + 100 and
+            playery >= 300 and
+            playery < 300 + 50):  # redo
         blockx -= 1
-        playerx = mouseX
+
     else:
-        mouseX = blockx
+        playerx = blockx
+        isjump = False
         death = True
         deathcounter += 1
+        print 'collided'
 
-    if isJump == True and jumpCounter >= -10:
+    if isJump and jumpCounter >= -10:
         neg = 1
         if jumpCounter < 0:
             neg = -1
         playery -= jumpCounter ** 2 * .5 * neg
         jumpCounter -= 1
+
     else:
         isJump = False
         jumpCounter = 10
-    if mouseX >  600:
-        Right = True
-    if mouseX < 600:
-        Left = True
-    if Left == True:
-        playerx -= vel
-    if Right == True:
-        playerx += vel
-
-    # if playerx in coinlistx and marioy in coinlisty:
-    #     print 'WORKING'
 
     rect(-10, 400, 1500, 200)
     rect(blockx, 300, 100, 50)
-    rect(600,300,100,10)
-    
-    if playerx >= 550 and playerx <= 750 and isJump == True:
+    rect(600, 300, 100, 10)
+
+    if playerx >= 550 and playerx <= 750 and isJump:
         collisiony = 100
     elif playerx >= -10 and playerx <= 550:
         collisiony = 0
-    elif playerx >=750 and playerx <= 1000000000:
+    elif playerx >= 750 and playerx <= 1000000000:
         collisiony = 0
-        
-    rect(playerx - playerw / 2, playery - collisiony, playerw, playerh)
-    
-    #Death Code
 
-    if death == True:
-        time.freeze
-    #ADD DEATH GIF U STUPID
-    #FLOWER 
-    #UPTOWN
-    #CAT
-    #KANGAROO
-    
+    rect(playerx - playerw / 2, playery - collisiony, playerw, playerh)
+
+    # Death Code
+
+    if death:
+        pass
+        # time.freeze
+        # play gif and restart
+
+
 def keyPressed():
     print(keyCode)
     keys_pressed[keyCode] = True
+
 
 def keyReleased():
     keys_pressed[keyCode] = False
