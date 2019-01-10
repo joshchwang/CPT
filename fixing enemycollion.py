@@ -38,7 +38,7 @@ def draw():
         playerx += vel
     if not(playerx + playerw / 2 > blockx and
             playerx - playerw / 2 < blockx + 100 and
-            playery >= 300 and
+            playery >= 299 and
             playery < 300 + 50):  # redo
         blockx -= 1
 
