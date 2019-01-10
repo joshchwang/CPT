@@ -44,7 +44,7 @@ def draw():
 
     else:
         playerx = blockx
-        isjump = False
+        isJump = False
         death = True
         deathcounter += 1
         print 'collided'
