@@ -6,6 +6,7 @@ def setup():
 def draw():
     global x
     x += 1
+    textSize(40)
     if x <= 9:
         text("{}{}".format('00000', x), 100, 100)
     elif x <= 99:
