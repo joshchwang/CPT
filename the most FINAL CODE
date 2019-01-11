@@ -1,5 +1,5 @@
 floory = 600
-playery = floory
+playery = floory + 100
 vel = 20
 playerw = 100
 playerh = 100
@@ -15,9 +15,10 @@ death = False
 keys_pressed = [False for key_code in range(256)]
 collisiony = 0
 playerx = 200
+enemyy = 500
 
 def setup():
-    fullScreen()
+    size(1360, 700)
     
 
 def draw():
@@ -26,10 +27,10 @@ def draw():
     global deathcounter, death, collisiony, keys_pressed
     background(135, 206, 250)
     
-    if not(playerx + playerw / 2 > enemyx and
-            playerx - playerw / 2 < enemyx + 100 and
-            playery >= 299 and
-            playery < 300 + 50):  # redo
+    if not(playerx + playerw > enemyx and
+            playerx - playerw  < enemyx + 100 and
+            playery >= floory and
+            playery < floory/2 + 50 ):  # redo
         enemyx -= 1
         if keys_pressed[87]:  # w
             pass
@@ -59,19 +60,19 @@ def draw():
         jumpCounter = 10
 
     rect(-10, floory, 1500, 200)
-    rect(enemyx, 300, 100, 50)
-    rect(600, 300, 100, 10)
+    rect(enemyx, enemyy, 100, 50)
+    rect(600, 500, 100, 10)
     
     # Checking if platform collision
-    if playerx >= 550 and playerx <= 750 and isJump or playery >= 300 :
-        collisiony = 100
-    elif playerx >= -10 and playerx <= 550:
+    if playerx >= 600 and playerx <= 750 and isJump or playery >= floory :
+        collisiony = 200
+    elif playerx >= -10 and playerx <= 700 :
         collisiony = 0
     elif playerx >= 750 and playerx <= 1000000000:
         collisiony = 0
     
     # Player
-    rect(playerx - playerw / 2, playery - collisiony, playerw, playerh)
+    rect(playerx, playery - collisiony, playerw, playerh)
 
     # Death Code
 
