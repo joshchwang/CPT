@@ -1,21 +1,23 @@
 
 x = 0
+def setup():
+    size(500,500)
 
 def draw():
     global x
     x += 1
     if x <= 9:
-        print "{}{}".format('00000', x)
+        text("{}{}".format('00000', x), 100, 100)
     elif x <= 99:
-        print "{}{}".format('0000', x)
+        text("{}{}".format('0000', x), 100, 100)
     elif x <= 999:
-        print "{}{}".format('000', x)
+        text("{}{}".format('000', x), 100, 100)
     elif x <= 9999:
-        print "{}{}".format('00', x)
+        text("{}{}".format('00', x), 100, 100)
     elif x <= 99999:
-        print "{}{}".format('0', x)
+        text("{}{}".format('0', x), 100, 100)
     elif x <= 999999:
-        print "{}".format(x)
+        text("{}".format(x), 100, 100)
  
 
 
