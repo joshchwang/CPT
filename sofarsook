@@ -14,17 +14,22 @@ death = False
 keys_pressed = [False for key_code in range(256)]
 collisiony = 0
 playerx = 200
+booting = True
 
 def setup():
-    size(1200, 600)
-
+    fullScreen()
 
 def draw():
     global playerx, playery, Right, Left, isJump
     global jumpCounter, enemyx, coinlistx, coinlisty
     global deathcounter, death, collisiony, keys_pressed
+    global booting
     background(255)
-    
+    if booting == True:
+        textSize(100)
+        fill('#134611') 
+        noStroke()
+        text("Mind Games", height/2, width/2)
     if not(playerx + playerw / 2 > enemyx and
             playerx - playerw / 2 < enemyx + 100 and
             playery >= 299 and
