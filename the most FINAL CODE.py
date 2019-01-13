@@ -1,5 +1,4 @@
-floory = 600
-playery = floory + 100
+playery = 299
 vel = 20
 playerw = 100
 playerh = 100
@@ -15,22 +14,26 @@ death = False
 keys_pressed = [False for key_code in range(256)]
 collisiony = 0
 playerx = 200
-enemyy = 500
+booting = True
 
 def setup():
-    size(1360, 700)
-    
+    fullScreen()
 
 def draw():
     global playerx, playery, Right, Left, isJump
     global jumpCounter, enemyx, coinlistx, coinlisty
     global deathcounter, death, collisiony, keys_pressed
-    background(135, 206, 250)
-    
-    if not(playerx + playerw > enemyx and
-            playerx - playerw  < enemyx + 100 and
-            playery >= floory and
-            playery < floory/2 + 50 ):  # redo
+    global booting
+    background(255)
+    if booting == True:
+        textSize(100)
+        fill('#134611') 
+        noStroke()
+        text("Mind Games", height/2, width/2)
+    if not(playerx + playerw / 2 > enemyx and
+            playerx - playerw / 2 < enemyx + 100 and
+            playery >= 299 and
+            playery < 300 + 50):  # redo
         enemyx -= 1
         if keys_pressed[87]:  # w
             pass
@@ -59,20 +62,20 @@ def draw():
         isJump = False
         jumpCounter = 10
 
-    rect(-10, floory, 1500, 200)
-    rect(enemyx, enemyy, 100, 50)
-    rect(600, 500, 100, 10)
+    rect(-10, 400, 1500, 200)
+    rect(enemyx, 300, 100, 50)
+    rect(600, 300, 100, 10)
     
     # Checking if platform collision
-    if playerx >= 600 and playerx <= 750 and isJump or playery >= floory :
-        collisiony = 200
-    elif playerx >= -10 and playerx <= 700 :
+    if playerx >= 550 and playerx <= 750 and isJump or playery >= 300 :
+        collisiony = 100
+    elif playerx >= -10 and playerx <= 550 and isJump == False:
         collisiony = 0
-    elif playerx >= 750 and playerx <= 1000000000:
+    elif playerx >= 750 and playerx <= 1000000000 and isJump:
         collisiony = 0
     
     # Player
-    rect(playerx, playery - collisiony, playerw, playerh)
+    rect(playerx - playerw / 2, playery - collisiony, playerw, playerh)
 
     # Death Code
 
@@ -84,7 +87,6 @@ def draw():
 def keyPressed():
     print(keyCode)
     keys_pressed[keyCode] = True
-
 
 def keyReleased():
     keys_pressed[keyCode] = False
