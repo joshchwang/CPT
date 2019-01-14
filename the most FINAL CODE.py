@@ -63,19 +63,22 @@ def draw():
     rect(-10, floory, 1500, 200)
     rect(enemyx, floory-100, 100, 50)
     rect(platx, platy, 100, 10)
-
+    rect(platx + 300, platy  - 20, 100,10)
     # Checking if platform collision
-
-    if (playerx >= 500 and playerx <= 700 and 
-        playery - collisiony < 499 or 
-        playerx >= 500 and playerx <= 700 
-        and playery - collisiony < 400 and isJump
-        
-        or
-        pass
-            
+    #platx = 600
+    #platy = 500
+    
+    if (playerx >= platx-100 and playerx <= platx+100 and 
+        playery - collisiony < platy-1 or 
+        playerx >= platx-100 and playerx <= platx+100 
+        and playery - collisiony < platy-100 and isJump
         ):
             collisiony = 300
+    elif (playerx >= platx-100+300 and playerx <= platx+100+300 and 
+        playery - collisiony < platy-1-20 or 
+        playerx >= platx-100+300 and playerx <= platx+100+300 
+        and playery - collisiony < platy-100-20 and isJump ):
+        collisiony = 320
     else:
         collisiony = 200
 
@@ -88,7 +91,7 @@ def draw():
         pass
         # play gif and restart
     print playerx, playery - collisiony, enemyy-1
-
+    
 
 def keyPressed():
     keys_pressed[keyCode] = True
