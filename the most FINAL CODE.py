@@ -29,7 +29,10 @@ def draw():
     global jumpCounter, enemyx, coinlistx, coinlisty
     global deathcounter, death, collisiony, keys_pressed
     background(135, 206, 250)
-
+    fill('#228B22')
+    textSize(50)
+    text("It's always so hard to do the right thing,", 200, 200)
+    text("But so easy to do the wrong thing.", 275, 250)
     if not(playery - collisiony == enemyy-1 and
             playerx + playerw > enemyx and
             playerx - playerw < enemyx ):  # redo
