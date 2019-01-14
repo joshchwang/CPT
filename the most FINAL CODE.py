@@ -1,7 +1,9 @@
-playery = 299
-vel = 20
+floory = 600
+playerx = 200
 playerw = 100
 playerh = 100
+playery = floory + playerh - 1
+vel = 20
 isJump = False
 jumpCounter = 10
 Left = False
@@ -12,28 +14,25 @@ coinlisty = [20, 30, 40, 50, 60, 70, 80, 90, 100]
 deathcounter = 0
 death = False
 keys_pressed = [False for key_code in range(256)]
-collisiony = 0
-playerx = 200
-booting = True
+collisiony = 200
+enemyy = 500
+platx = 600
+platy = 500
+
 
 def setup():
-    fullScreen()
+    size(1360, 700)
+
 
 def draw():
-    global playerx, playery, Right, Left, isJump
+    global playerx, playerw, playery, Right, Left, isJump
     global jumpCounter, enemyx, coinlistx, coinlisty
     global deathcounter, death, collisiony, keys_pressed
-    global booting
-    background(255)
-    if booting == True:
-        textSize(100)
-        fill('#134611') 
-        noStroke()
-        text("Mind Games", height/2, width/2)
-    if not(playerx + playerw / 2 > enemyx and
-            playerx - playerw / 2 < enemyx + 100 and
-            playery >= 299 and
-            playery < 300 + 50):  # redo
+    background(135, 206, 250)
+
+    if not(playery - collisiony == enemyy-1 and
+            playerx + playerw > enemyx and
+            playerx - playerw < enemyx ):  # redo
         enemyx -= 1
         if keys_pressed[87]:  # w
             pass
@@ -42,14 +41,13 @@ def draw():
         if keys_pressed[65]:  # a
             playerx -= vel
         if keys_pressed[83]:  # s
-            text('s', 100, 50)
+            pass
         if keys_pressed[68]:  # d
             playerx += vel
     else:
         death = True
         deathcounter += 1
         print 'collided'
-
 
     if isJump and jumpCounter >= -10:
         neg = 1
@@ -62,31 +60,39 @@ def draw():
         isJump = False
         jumpCounter = 10
 
-    rect(-10, 400, 1500, 200)
-    rect(enemyx, 300, 100, 50)
-    rect(600, 300, 100, 10)
-    
+    rect(-10, floory, 1500, 200)
+    rect(enemyx, floory-100, 100, 50)
+    rect(platx, platy, 100, 10)
+
     # Checking if platform collision
-    if playerx >= 550 and playerx <= 750 and isJump or playery >= 300 :
-        collisiony = 100
-    elif playerx >= -10 and playerx <= 550 and isJump == False:
-        collisiony = 0
-    elif playerx >= 750 and playerx <= 1000000000 and isJump:
-        collisiony = 0
-    
+
+    if (playerx >= 500 and playerx <= 700 and 
+        playery - collisiony < 499 or 
+        playerx >= 500 and playerx <= 700 
+        and playery - collisiony < 400 and isJump
+        
+        or
+        pass
+            
+        ):
+            collisiony = 300
+    else:
+        collisiony = 200
+
     # Player
-    rect(playerx - playerw / 2, playery - collisiony, playerw, playerh)
+    rect(playerx, playery - collisiony, playerw, playerh)
 
     # Death Code
 
     if death:
         pass
         # play gif and restart
+    print playerx, playery - collisiony, enemyy-1
 
 
 def keyPressed():
-    print(keyCode)
     keys_pressed[keyCode] = True
+
 
 def keyReleased():
     keys_pressed[keyCode] = False
