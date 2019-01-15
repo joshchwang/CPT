@@ -75,13 +75,12 @@ def draw():
     if (playerx >= platx-100 and playerx <= platx+100 and 
         playery - collisiony < platy-1 or 
         playerx >= platx-100 and playerx <= platx+100 
-        and playery - collisiony < platy-100 and isJump
-        ):
+        and playery - collisiony < platy-100 and isJump or isJump):
             collisiony = 300
     elif (playerx >= platx-100+300 and playerx <= platx+100+300 and 
         playery - collisiony < platy-1-20 or 
         playerx >= platx-100+300 and playerx <= platx+100+300 
-        and playery - collisiony < platy-100-20 and isJump ):
+        and playery - collisiony < platy-100-20 and isJump or isJump):
         collisiony = 320
     else:
         collisiony = 200
