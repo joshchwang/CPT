@@ -29,6 +29,7 @@ def draw():
     global jumpCounter, enemyx, coinlistx, coinlisty
     global deathcounter, death, collisiony, keys_pressed
     background(135, 206, 250)
+    noStroke()
     fill('#228B22')
     textSize(50)
     text("It's always so hard to do the right thing,", 200, 200)
