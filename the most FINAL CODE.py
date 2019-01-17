@@ -21,7 +21,6 @@ platy = 500
 trianglex = 1360
 triangley = 600
 sidescrol = 0.7
-textxx = 200
 textx = 275
 
 def setup():
@@ -30,16 +29,15 @@ def setup():
 
 def draw():
     global playerx, playerw, playery, Right, Left, isJump
-    global jumpCounter, enemyx, coinlistx, coinlisty, textxx, textx
+    global jumpCounter, enemyx, coinlistx, coinlisty, textx
     global deathcounter, death, collisiony, keys_pressed, platx, trianglex
     background(135, 206, 250)
     noStroke()
     fill('#228B22')
     textSize(50)
-    text("It's always so hard to do the right thing,", textxx, 200)
+    text("It's always so hard to do the right thing,", textx - 75, 200)
     text("But so easy to do the wrong thing.", textx, 250)
     textx -= sidescrol
-    textxx -= sidescrol
     if not(playery - collisiony == enemyy-1 and
             playerx + playerw > enemyx and
             playerx - playerw < enemyx ):  # redo
