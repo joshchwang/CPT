@@ -53,7 +53,7 @@ def setup():
     death25 = loadImage("25.gif")
     death26 = loadImage("26.gif")
     death27 = loadImage("27.gif")
-    death28 = loadImage("28.gif")
+    death28 = loadImage("28.gif")      
     death29 = loadImage("29.gif")
     death30 = loadImage("30.gif")
     deathlist = [ death2, death3, death4, death5, death6, death7, death8, death9, death10,
@@ -65,8 +65,8 @@ def setup():
 def draw():
     global playerx, playerw, playery, Right, Left, isJump, trianglex
     global jumpCounter, enemyx, coinlistx, coinlisty, deathlist
-    global deathcounter, death, collisiony, keys_pressed, platx
-    global textx
+    global deathcounter, death, collisiony, keys_pressed, platx, vel
+    global textx, sidescrol, enemyy, floory, platy, playerh, triangley
     background(135, 206, 250)
     noStroke()
     fill('#228B22')
@@ -88,6 +88,8 @@ def draw():
             pass
         if keys_pressed[68]:  # d
             playerx += vel
+       # if keys_pressed[82]:  # r
+            
     else:
         death = True
         deathcounter += .3
@@ -172,7 +174,7 @@ def draw():
                 deathcounter = 0
     print playerx, playery - collisiony, enemyy-1
     platx -= sidescrol
-
+    
 def keyPressed():
     keys_pressed[keyCode] = True
 
