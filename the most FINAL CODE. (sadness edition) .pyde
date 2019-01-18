@@ -22,6 +22,7 @@ trianglex = 1600
 triangley = 600
 sidescrol = 1
 textx = 275
+platformlist = [(0,0), (300,20), (760,0), (1160,50), (1560,100), (1960,120)]
 
 
 def setup():
@@ -73,11 +74,14 @@ def draw():
     textSize(50)
     text("It's always so hard to do the right thing,", textx - 75, 200)
     text("But so easy to do the wrong thing.", textx, 250)
-    textx -=  sidescrol
+    
     if not(playery - collisiony == enemyy-1 and
             playerx + playerw > enemyx and
             playerx - playerw < enemyx ):  # redo
         enemyx -= sidescrol + 1
+        textx -=  sidescrol
+        platx -= sidescrol
+        trianglex -= sidescrol
         if keys_pressed[87]:  # w
             pass
         if keys_pressed[32]:  # space
@@ -110,22 +114,30 @@ def draw():
     rect(enemyx, floory-100, 100, 50)
     rect(platx, platy, 100, 10)
     rect(platx + 300, platy  - 20, 100,10)
-    # Checking if platform collision
-    #platx = 600
-    #platy = 500
-    #plat1
+    
+#platformlist = [(0,0), (300,20), (760,0), (1160,50), (1560,100), (1960,120)]
+
+    for x, y in platformlist:
+        rect(platx + x, platy - y, 100, 10)
+        # if (playerx >= platx - 100 + x and playerx <= platx + 100 + x and 
+        #    playery - collisiony < platy - 1 - y  or 
+        #    playerx >= platx - 100 + x and playerx <= platx + 100 + x
+        #    and playery - collisiony < platy - 100 - y and isJump or isJump ):
+        #       collisiony = 300 + y
+
     if (playerx >= platx-100 and playerx <= platx+100 and 
         playery - collisiony < platy-1 or 
         playerx >= platx-100 and playerx <= platx+100 
         and playery - collisiony < platy-100 and isJump or isJump):
             collisiony = 300
         #plat2
-    elif (playerx >= platx-100+300 and playerx <= platx+100+300 and 
+    elif (playerx >= platx - 100 + 300 and playerx <= platx+100+300 and 
         playery - collisiony < platy-1-20 or 
         playerx >= platx-100+300 and playerx <= platx+100+300 
         and playery - collisiony < platy-100-20 and isJump or isJump):
         collisiony = 320
         #plat3
+        
     elif (playerx >= platx-100 + 760 and playerx <= platx+100 + 760 and 
         playery - collisiony < platy-1 or 
         playerx >= platx-100 and playerx <= platx+100 + 760 
@@ -150,18 +162,22 @@ def draw():
         and playery - collisiony < platy-100-120 and isJump or isJump):
         collisiony = 420
     else:
-        collisiony = 200
-    # Player
-    rect(playerx, playery - collisiony, playerw, playerh)
+        collisiony = 200 
     
+    # Player
+    rect(playerx, playery - collisiony, playerw, playerh)\
+    
+    noFill()
+    stroke(10)
+    rect(trianglex ,triangley-50, 1400, 50)
+    if playerx >= trianglex and playerx < trianglex + 1400 and playery - collisiony == triangley - 50:
+        death
+    fill('#228B22')
     #level design "death"
     for difference in range(0, 1360, 50):
         triangle(trianglex + difference, triangley,trianglex + 25+ difference,triangley - 50,trianglex + 50+ difference, triangley)  
-    rect(platx + 760, platy, 100, 10)
-    rect(platx + 1160, platy - 50, 100, 10)
-    rect(platx + 1560, platy - 100, 100, 10)
-    rect(platx + 1960, platy - 120, 100, 10)
-    trianglex -= sidescrol
+    
+    playerx != -20
     # Death Code
     if death == True:
         if deathcounter >= 28:
@@ -173,7 +189,6 @@ def draw():
             if deathcounter == 28:
                 deathcounter = 0
     print playerx, playery - collisiony, enemyy-1
-    platx -= sidescrol
     
 def keyPressed():
     keys_pressed[keyCode] = True
