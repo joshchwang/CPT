@@ -22,7 +22,7 @@ trianglex = 1600
 triangley = 600
 sidescrol = 5
 textx = 275
-platformlist = [(0,0), (300,20), (760,0), (1160,50), (1560,100), (1960,120),(3000, 20), (3800, 20), (3400, 20) ]
+platformlist = [(0,0), (300,20), (760,0), (1160,50), (1560,100), (1960,120),(3000, 20), (3800, 20), (3400, 20), (3600, 0), \\ ]
 holex = 3500
 
 
@@ -162,14 +162,27 @@ def draw():
         playerx >= platx-100+1960 and playerx <= platx+100+1960
         and playery - collisiony < platy-100-120 and isJump or isJump):
         collisiony = 420
+        #plat7
     elif (playerx >= platx-100+3000 and playerx <= platx+100+3000 and 
         playery - collisiony < platy-1  or 
         playerx >= platx-100+3000 and playerx <= platx+100+3000
         and playery - collisiony < platy-100 and isJump or isJump):
         collisiony = 320
+        #plat9
     elif (playerx >= platx-100+3800 and playerx <= platx+100+3800 and 
         playery - collisiony < platy-1  or 
         playerx >= platx-100+3800 and playerx <= platx+100+3800
+        and playery - collisiony < platy-100 and isJump or isJump):
+        collisiony = 320
+        #plat 8
+    elif (playerx >= platx-100+3600 and playerx <= platx+100+3600 and 
+        playery - collisiony < platy-1  or 
+        playerx >= platx-100+3600 and playerx <= platx+100+3600
+        and playery - collisiony < platy-100 and isJump or isJump):
+        collisiony = 300
+    elif (playerx >= platx-100+5600 and playerx <= platx+100+5600 and 
+        playery - collisiony < platy-1  or 
+        playerx >= platx-100+5600 and playerx <= platx+100+5600
         and playery - collisiony < platy-100 and isJump or isJump):
         collisiony = 320
     else:
@@ -201,8 +214,19 @@ def draw():
     elif playerx >= holex + 400 and playerx <= holex + 900 and collisiony == 200 and isJump == False:
         playery = 0
         death = True
+        
+    #Hell
+    fill('#228B22')
+    text("don't think too hard about this", textx + 3850, 200)
+    for difference in range(0, 1360, 50):
+        triangle(trianglex + difference+ 4000, triangley,trianglex + 25 + difference+ 4000,triangley - 50,trianglex + 50 + difference+ 4000, triangley) 
+        triangle(trianglex + difference+ 4000, triangley - 200,trianglex + 25 + difference+ 4000,triangley - 50 - 200,trianglex + 50 + difference+ 4000, triangley - 200  ) 
+    rect(platx + 5000, platy - 100, 1400,10)
+    # add triangle death on the second layer
+    
     # Death Code
     if death == True:
+        sidescrol = 0
         if deathcounter >= 28:
             deathcounter = 0        
         #Put in picture as failsafe
