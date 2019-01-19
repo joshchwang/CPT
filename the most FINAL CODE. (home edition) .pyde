@@ -20,7 +20,7 @@ platx = 600
 platy = 500
 trianglex = 1600
 triangley = 600
-sidescrol = 2
+sidescrol = 5
 textx = 275
 platformlist = [(0, 0), (300, 20), (760, 0),
                 (1160, 50), (1560, 100),
@@ -29,11 +29,11 @@ platformlist = [(0, 0), (300, 20), (760, 0),
 enemylist = [0]
 holex = 3500
 introx = 2000
-
+homex = 8000
 
 def setup():
     size(1360, 700)
-    global playerimage, deathlist
+    global deathlist, deathimage, house
     death2 = loadImage("2.gif")
     death3 = loadImage("3.gif")
     death4 = loadImage("4.gif")
@@ -70,13 +70,14 @@ def setup():
                  death18,death19, death20, death21,
                  death22,death23, death24, death25,
                  death26, death27, death28, death29, death30]
-    playerimage = death2
+    house = loadImage('sadhouse.jpg')
+    deathimage = death2
 
 def draw():
     global playerx, playerw, playery, Right, Left, isJump, trianglex
     global jumpCounter, enemyx, coinlistx, coinlisty, deathlist
     global deathcounter, death, collisiony, keys_pressed, platx, vel
-    global textx, sidescrol, enemyy, floory, platy, playerh, triangley, holex
+    global textx, sidescrol, enemyy, floory, platy, playerh, triangley, holex, deathimage, deathlist, homex, house
     background(250,250,210)
     noStroke()
     fill('#228B22')
@@ -96,7 +97,8 @@ def draw():
         textx -=  sidescrol
         platx -= sidescrol
         trianglex -= sidescrol
-        
+        holex -= sidescrol
+        homex -= sidescrol
         if keys_pressed[32]:  # space
             isJump = True
         
@@ -130,7 +132,7 @@ def draw():
 #                 (3400, 20), (3600, 0)]   
 
     for x, y in platformlist:
-        rect(platx + x, platy - y, 100, 10)
+        rect(platx + x , platy - y, 100, 10)
         
     if (playerx >= platx-100 and playerx <= platx+100 and 
         playery - collisiony < platy-1 or 
@@ -201,41 +203,37 @@ def draw():
         
     else:
         collisiony = 200 
-    
+    image(house, homex, floory - 655)
+
     # Player
     rect(playerx, playery - collisiony, playerw, playerh)
-    
+    stroke(12)
     noFill()
-    stroke(10)
     rect(trianglex ,triangley-50, 1400, 50)
+    
     if playerx + 100 >= trianglex and playerx + 100 < trianglex + 1400 and playery  >= triangley - 50:
         death
     print playerx, playery, trianglex, triangley
     fill('#228B22')
+    
     #level design "death"
     for difference in range(0, 1400, 50):
         triangle(trianglex + difference, triangley,trianglex + 25+ difference,triangley - 50,trianglex + 50+ difference, triangley)
         triangle(trianglex + difference + 4000, triangley, trianglex + 25 + difference + 4000, triangley - 50, trianglex + 50 + difference + 4000, triangley) 
         triangle(trianglex + difference + 4000, triangley - 200,trianglex + 25 + difference + 4000, triangley - 50 - 200, trianglex + 50 + difference + 4000, triangley - 200  ) 
     
-
-    #annoying pit of death
-    
-    fill(1)
-    rect(holex, floory, 400, 100)
-    rect(holex + 400, floory, 500, 100)
-    if playerx >= holex and playerx <= holex + 400 and collisiony == 200 and isJump == False:
-        playery = 0
-        death = True
-    elif playerx >= holex + 400 and playerx <= holex + 900 and collisiony == 200 and isJump == False:
-        playery = 0
-        death = True
-    
     fill('#228B22')
     text("Don't think too hard about this", textx + 3000, 200)         
     rect(platx + 5000, platy - 100, 1400,10)
+    #annoying pit of death
+    
+    fill(1)
+    rect(holex, floory, 900, 100)
 
-    # add triangle death on the lower layer
+
+    if playerx >= holex and playerx <= holex + 900 and playery <= floory and isJump == False:
+        collisiony = 700
+        death 
     
     # Death Code
     if death == True:
@@ -244,13 +242,14 @@ def draw():
         if deathcounter >= 28:
             deathcounter = 0        
         for d in (deathlist):
-            playerimage = deathlist[int(deathcounter)]
-            image(playerimage, width/2-148, height/2-133)
+            deathimage = deathlist[int(deathcounter)]
+            image(deathimage, width/2-148, height/2-133)
             if deathcounter == 28:
                 deathcounter = 0
+                
     rect(platx + 5000, platy - 100, 1400,10)
 
-    if playery <= 0:
+    if playery <= floory:
         death
 
 def keyPressed():
