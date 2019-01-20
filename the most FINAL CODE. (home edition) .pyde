@@ -33,7 +33,7 @@ homex = 8000
 
 def setup():
     size(1360, 700)
-    global deathlist, deathimage, house
+    global deathlist, deathimage, house, backgroundimage
     death2 = loadImage("2.gif")
     death3 = loadImage("3.gif")
     death4 = loadImage("4.gif")
@@ -71,16 +71,17 @@ def setup():
                  death22,death23, death24, death25,
                  death26, death27, death28, death29, death30]
     house = loadImage('sadhouse.jpg')
+    backgroundimage = loadImage('sadnessbg2.jpg')
     deathimage = death2
-
+    
 def draw():
     global playerx, playerw, playery, Right, Left, isJump, trianglex
     global jumpCounter, enemyx, coinlistx, coinlisty, deathlist
     global deathcounter, death, collisiony, keys_pressed, platx, vel
     global textx, sidescrol, enemyy, floory, platy, playerh, triangley, holex, deathimage, deathlist, homex, house
-    background(250,250,210)
     noStroke()
-    fill('#228B22')
+    background(40,46,60)
+    fill(80,92,124)
     font = loadFont('BlackadderITC-Regular-48.vlw')
     textFont(font)
     textSize(70)
@@ -207,14 +208,10 @@ def draw():
 
     # Player
     rect(playerx, playery - collisiony, playerw, playerh)
-    stroke(12)
-    noFill()
-    rect(trianglex ,triangley-50, 1400, 50)
     
     if playerx + 100 >= trianglex and playerx + 100 < trianglex + 1400 and playery  >= triangley - 50:
         death
-    print playerx, playery, trianglex, triangley
-    fill('#228B22')
+    fill(36,36,36)
     
     #level design "death"
     for difference in range(0, 1400, 50):
@@ -222,7 +219,7 @@ def draw():
         triangle(trianglex + difference + 4000, triangley, trianglex + 25 + difference + 4000, triangley - 50, trianglex + 50 + difference + 4000, triangley) 
         triangle(trianglex + difference + 4000, triangley - 200,trianglex + 25 + difference + 4000, triangley - 50 - 200, trianglex + 50 + difference + 4000, triangley - 200  ) 
     
-    fill('#228B22')
+    fill(80,92,124)
     text("Don't think too hard about this", textx + 3000, 200)         
     rect(platx + 5000, platy - 100, 1400,10)
     #annoying pit of death
@@ -251,7 +248,6 @@ def draw():
 
     if playery <= floory:
         death
-
 def keyPressed():
     keys_pressed[keyCode] = True
 
