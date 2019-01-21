@@ -166,7 +166,7 @@ def draw():
             enemycounter += .1
             if enemycounter >= 8:
                 enemycounter = 1
-            counter += .1
+            counter += .4
             if counter >= 28:
                 counter = 1
     else:
@@ -214,79 +214,89 @@ def draw():
         # plat3
     elif (playerx >= platx - 100 + 760 and playerx <= platx + 100 + 760 and
           playery - collisiony < platy-1 or
-          playerx >= platx - 100 and playerx <= platx + 100 + 760
-          and playery - collisiony < platy - 100 and isJump or isJump):
+          playerx >= platx - 100 and playerx <= platx + 100 +
+          760 and playery - collisiony < platy - 100 and isJump or
+          isJump):
                 collisiony = 300
 
         # plat4
     elif (playerx >= platx - 100 + 1160 and playerx <= platx + 100 + 1160 and
           playery - collisiony < platy-1 or
-          playerx >= platx - 100 + 1060 and playerx <= platx + 100 + 1160
-          and playery - collisiony < platy - 100 - 50 and isJump or isJump):
+          playerx >= platx - 100 + 1060 and playerx <= platx + 100 +
+          1160 and playery - collisiony < platy - 100 - 50 and isJump or
+          isJump):
                 collisiony = 350
 
         # plat5
     elif (playerx >= platx-100+1560 and playerx <= platx+100+1560 and
           playery - collisiony < platy - 1 or
-          playerx >= platx-100+1560 and playerx <= platx+100+1560
-          and playery - collisiony < platy-100-100 and isJump or isJump):
+          playerx >= platx-100+1560 and playerx <= platx + 100 +
+          1560 and playery - collisiony < platy-100-100 and isJump or
+          isJump):
                 collisiony = 400
 
         # plat6
     elif (playerx >= platx-100+1960 and playerx <= platx+100+1960 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100+1960 and playerx <= platx+100+1960
-          and playery - collisiony < platy-100-120 and isJump or isJump):
+          playerx >= platx-100+1960 and playerx <= platx+100 +
+          1960 and playery - collisiony < platy-100-120 and isJump or isJump):
                 collisiony = 420
 
         # plat7
     elif (playerx >= platx - 100 + 3000 and playerx <= platx + 100 + 3000 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100 + 3000 and playerx <= platx + 100 + 3000
-          and playery - collisiony < platy-100 and isJump or isJump):
+          playerx >= platx-100 + 3000 and playerx <= platx + 100 +
+          3000 and playery - collisiony < platy-100 and isJump or
+          isJump):
                 collisiony = 320
 
         # plat 8
     elif (playerx >= platx-100+3600 and playerx <= platx+100+3600 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100+3600 and playerx <= platx+100+3600
-          and playery - collisiony < platy-100 and isJump or isJump):
+          playerx >= platx-100+3600 and playerx <= platx+100 +
+          3600 and playery - collisiony < platy-100 and isJump or
+          isJump):
             collisiony = 300
 
         # plat9
     elif (playerx >= platx-100+3800 and playerx <= platx+100+3800 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100+3800 and playerx <= platx+100+3800
-          and playery - collisiony < platy-100 and isJump or isJump):
+          playerx >= platx-100+3800 and playerx <= platx+100 +
+          3800 and playery - collisiony < platy-100 and isJump or
+          isJump):
                 collisiony = 320
 
         # Pretty sure this is the death platform but I need conformation
     elif (playerx >= platx-100+5600 and playerx <= platx+100+5600 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100+5600 and playerx <= platx+100+5600
-          and playery - collisiony < platy-100 and isJump or isJump):
+          playerx >= platx-100+5600 and playerx <= platx+100 +
+          5600 and playery - collisiony < platy-100 and isJump or
+          isJump):
                 collisiony = 320
                 death = True
 
         # plat10
     elif (playerx >= platx-100+4500 and playerx <= platx+100+4500 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100+4500 and playerx <= platx+100+4500
-          and playery - collisiony < platy-100 and isJump or isJump):
+          playerx >= platx-100+4500 and playerx <= platx+100 +
+          4500 and playery - collisiony < platy-100 and isJump or
+          isJump):
                 collisiony = 300
 
         # plat11
     elif (playerx >= platx-100+4800 and playerx <= platx+100+4800 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100+4800 and playerx <= platx+100+4800
-          and playery - collisiony < platy-100 and isJump or isJump):
+          playerx >= platx-100+4800 and playerx <= platx+100 +
+          4800 and playery - collisiony < platy-100 and isJump or
+          isJump):
                 collisiony = 420
 
         # plat12
     elif (playerx >= platx-100+5100 and playerx <= platx+100+5100 and
           playery - collisiony < platy-1 or
-          playerx >= platx-100+5100 and playerx <= platx+100+5100
-          and playery - collisiony < platy-100 and isJump or isJump):
+          playerx >= platx-100+5100 and playerx <= platx+100 +
+          5100 and playery - collisiony < platy-100 and isJump or
+          isJump):
             collisiony = 540
     else:
         collisiony = 200
@@ -301,8 +311,8 @@ def draw():
     text("Please don't fail us!", homex + 1200, 250)
 
     # Player
-    if (playerx + 100 >= trianglex and playerx + 100 < trianglex + 1400
-        and playery >= triangley - 50):
+    if (playerx + 100 >= trianglex and playerx + 100 < trianglex +
+            1400 and playery >= triangley - 50):
         death
     fill('#0A0908')
 
@@ -312,11 +322,11 @@ def draw():
                  difference, triangley - 50, trianglex + 50 +
                  difference, triangley)
         triangle(trianglex + difference + 4000, triangley, trianglex + 25 +
-                 difference + 4000, triangley - 50, trianglex + 50
-                 + difference + 4000, triangley)
+                 difference + 4000, triangley - 50, trianglex +
+                 50 + difference + 4000, triangley)
         triangle(trianglex + difference + 4000, triangley - 200, trianglex +
-                 25 + difference + 4000, triangley - 50 - 200, trianglex + 50
-                 + difference + 4000, triangley - 200)
+                 25 + difference + 4000, triangley - 50 - 200, trianglex +
+                 50 + difference + 4000, triangley - 200)
 
     if(playerx <= trianglex - 1400 and playery - collisiony +
        playerh >= triangley - 50 or playerx >= trianglex and playery -
@@ -333,7 +343,7 @@ def draw():
     fill('#0A0908')
     rect(holex, floory, 900, 100)
     if (playerx >= holex and playerx <= holex + 900 and playery <=
-        floory and not(isJump)):
+            floory and not(isJump)):
             collisiony = 600
             death = True
     # if (playerx >= platx-100+5100 and playerx <= platx+100+5100 and
@@ -355,8 +365,9 @@ def draw():
                 deathcounter = 0
     if (playerx >= platx - 100 and playerx <= platx + 100 and
             playery - collisiony < platy - 1 or
-            playerx >= platx - 100 and playerx <= platx + 100
-            and playery - collisiony < platy-100 and isJump or isJump):
+            playerx >= platx - 100 and playerx <= platx +
+            100 and playery - collisiony < platy-100 and isJump or
+            isJump):
                 collisiony = 300
     rect(platx + 5000, platy - 100, 1400, 10)
 
