@@ -1,8 +1,8 @@
 # -= Welcome to _Mind Games_ =-  
-###### The name is a work in progress
 
-```The is the only level of the game, the tutorial if you will, is where all the game files are originally existant, the story behind the game is that you are a knight traveling through a cave that has a toxic chemical that is making you think some things are real and some arent, hope you enjoy :)```
+```There is only one point of this game, to not be fooled. You are a knight traveling through a cave that holds toxic chemicals that affect your mind, causing you to hallucinate.```
 
+All the game files needed can be found here.
 
 The game's Creators:
 1. Josh C
